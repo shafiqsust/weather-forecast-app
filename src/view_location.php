@@ -156,7 +156,7 @@ $current_forecast = $forecast_json['properties']['periods'][0];
 </nav>
 <div class="container">
     <h1>Location Details</h1>
-    <? if ($location) : ?>
+    
     <div class="location-details">
         <p><strong>Location Name:</strong> <?php echo htmlspecialchars($location['location_name']); ?></p>
         <p><strong>Longitude (x coordinate):</strong> <?php echo htmlspecialchars($location['x_coordinate']); ?></p>
@@ -201,9 +201,7 @@ $current_forecast = $forecast_json['properties']['periods'][0];
             <h2>Current Week Weather Forecast</h2>
             <button class="btn btn-primary" data-toggle="modal" data-target="#forecastModal">View Current Week Forecast</button></p>
     </div>
-    <? else: ?>
-        <div class="warning">Location not found</div>
-   <? endif; ?>
+    
 
     <a href="index.php">Back to Locations</a>
 </div>

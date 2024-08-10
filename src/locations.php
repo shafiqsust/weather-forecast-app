@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $location_name = $_POST['location_name'];
 
 
-    if(isset($_POST['id'])){
+    if(isset($_POST['id']) && $_POST['id'] > 0){
         // SQL query to update the location record
         $sql = "UPDATE locations SET x_coordinate = :x_coordinate, y_coordinate = :y_coordinate, location_name = :location_name WHERE id = :id";
 
@@ -38,8 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 }
 
-
-
+// Fetch data for edit
 if(isset($_GET['id'])){
     $id = $_GET['id'];
     $stmt = $db_handle->prepare("SELECT * FROM locations WHERE id = ?");
@@ -50,10 +49,6 @@ if(isset($_GET['id'])){
     $location_name = $location['location_name'];
 }
 
-
-// Fetch all locations
-// $stmt = $db_handle->query("SELECT * FROM locations");
-// $locations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -145,11 +140,11 @@ if(isset($_GET['id'])){
     <form method="POST">
         <input type="hidden" name="id" value="<?=$id ?>">
         <div class="form-group">
-            <label for="x_coord">Longitude (x coordinate):</label>
+            <label for="x_coord">X coordinate:</label>
             <input type="text" id="x_coord" name="x_coord" value="<?=$x_coord; ?>" required>
         </div>
         <div class="form-group">
-            <label for="y_coord">Latitude (y coordinate):</label>
+            <label for="y_coord">Y coordinate:</label>
             <input type="text" id="y_coord" name="y_coord" value="<?=$y_coord; ?>" required>
         </div>
         <div class="form-group">
